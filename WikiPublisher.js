@@ -1,7 +1,9 @@
 /*
- Signpost Publishing Script (SPS)
- by Evad37
- Forked by JPxG, 2022
+ উইকিপত্রিকা প্রকাশ করার স্ক্রিপ্ট
+মূল তৈরি করেছেন: Evad37
+ইংরেজি সাইনপোস্টের জন্য ফর্ক করেছেন: JPxG, 2022
+(সকল ব্যবহারকারীর অ্যাকাউন্ট ইংরেজি উইকিপিডিয়ায়)
+বাংলা উইকিপিডিয়ার জন্য কাজ করেছেন: R1F4T
  ------------
  Note 1: This script will only run for users specified in the publishers array.
  ------------
@@ -1033,10 +1035,10 @@ var globalmassmsg = function(data) {
 		return midtext + "* " + article.section + ": [[w:bn:" + data.path + "/" + data.today.iso + "/" + article.section + "|" + article.title + "]]\n\n";
 	}, '');
 	var msg_bottom = '</div>\n'+
-	'<div style="margin-top:10px; font-size:90%; padding-left:5px; font-family:Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;">'+
-	'\'\'\'[[w:en:Wikipedia:Wikipedia Signpost|Read this Signpost in full]]\'\'\' · [[w:en:Wikipedia:Signpost/Single|Single-page]] · '+
-	'[[m:Global message delivery/Targets/Signpost|Unsubscribe]] · [[m:Global message delivery|Global message delivery]] ~~~~~\n'+
-	'<!-- Sent via script ([[w:en:' + data.script_page + ']]) --></div>';
+	'<div style="margin-top:10px; font-size:90%; padding-left:5px; font-family:Kalpurush, TiroBangla, Palatino, Palatino Linotype, Times, Times New Roman, serif;">'+
+	'\'\'\'[[:w:bn:উইকিপিডিয়া:উইকিপত্রিকা|সম্পূর্ণ উইকিপত্রিকা পড়ুন]]\'\'\' · [[:w:bn:উইকিপিডিয়া:উইকিপত্রিকা/দেয়ালিকা|দেয়ালিকা]] · '+
+	'[[m:Global message delivery/Targets/উইকিপত্রিকা|আনসাবস্ক্রাইব]] · [[m:Global message delivery|বৈশ্বিক বার্তা প্রেরণ]] ~~~~~\n'+
+	'<!-- Sent via script ([[w:bn:' + data.script_page + ']]) --></div>';
 	if (window.SPSdebug) {console.log("... sending global MassMessage.");}
 	return data.metaApi.postWithEditToken({
 		action: 'massmessage',
@@ -1479,7 +1481,7 @@ MainDialog.prototype.initialize = function() {
 					$('<span>').addClass('SPS-dryRun').text('[কেবল পরীক্ষা চালান]')
 				]),
 				$('<div>').attr('id', 'SPS-previewButton-container'),
-				$('<p>').text('নতুন সংখ্যা সম্পর্কে মেইলিং লিস্ট, টুইটার, এবং ফেসবুকে ঘোষণা দিতে ভুলবেন না।')
+				$('<p>').text('নতুন সংখ্যা সম্পর্কে মেইলিং লিস্ট, টুইটার এবং ফেসবুকে ঘোষণা দিতে ভুলবেন না।')
 			]),
 			classes: [ 'five' ],
 			padded: true,
@@ -1576,7 +1578,7 @@ MainDialog.prototype.setSortPanelContent = function(articlesInfo, startAtZeroVal
 
 	this.widgets.startAtZeroCheckbox = new OO.ui.CheckboxMultioptionWidget({
 		selected: startAtZeroValue,
-		label: 'Use announcement ("from the editors") formatting for first item',
+		label: 'এখানের প্রথম কলামটির জন্য অ্যানাউন্সমেন্ট (সম্পাদকীয়) ফরম্যাট ব্যবহার করুন।',
 		id: 'SPS-dialog-startAtZeroCheckbox'
 	});
 
@@ -1703,13 +1705,13 @@ MainDialog.prototype.getActionProcess = function( action ) {
 		.next(function() {
 			dialog.actions.setMode('sort');
 			dialog.stackLayout.setItem(dialog.panels.sort);
-			var publishButtonLabel = ( dialog.data.api.isFake ) ? 'Simulate publishing' : 'Publish';
+			var publishButtonLabel = ( dialog.data.api.isFake ) ? 'পরীক্ষামূলক প্রকাশ' : 'প্রকাশ';
 			dialog.getActions().getSpecial().primary.setLabel(publishButtonLabel);
 		}) // Hack to calculate size from this panel, rather than the previous panel
 		.next(function() {
 			dialog.actions.setMode('sort');
 			dialog.stackLayout.setItem(dialog.panels.sort);
-			var publishButtonLabel = ( dialog.data.api.isFake ) ? 'Simulate publishing' : 'Publish';
+			var publishButtonLabel = ( dialog.data.api.isFake ) ? 'পরীক্ষামূলক প্রকাশ' : 'প্রকাশ';
 			dialog.getActions().getSpecial().primary.setLabel(publishButtonLabel);
 		});
 	} else if ( action === 'next-to-status' ) {
@@ -2043,7 +2045,7 @@ mainWindowManager.$element.addClass('sps-oouiWindowManager').insertBefore($('#SP
 /* ========== Portlet link ====================================================================== */
 // Add link to 'More' menu which starts everything
 var portlet = mw.config.get('skin') === 'minerva' ? 'p-tb' : 'p-cactions';
-mw.util.addPortletLink(portlet, '#', 'Publish next edition', 'ca-pubnext');
+mw.util.addPortletLink(portlet, '#', 'পরবর্তী সংখ্যা প্রকাশ করুন', 'ca-pubnext');
 $('#ca-pubnext').on('click', function(e) {
 	e.preventDefault();
 	// Configuration values
